@@ -1,4 +1,4 @@
-# Machine Learning Bitcoin Trading Algorithm PineScript
+# Automated Bitcoin Trading Algorithm PineScript
 
 ## About
   * Technical analysis trading script that compares previous market data and intelligently identifies Bitcoin/USD buy/sell opportunities and displays volalility
