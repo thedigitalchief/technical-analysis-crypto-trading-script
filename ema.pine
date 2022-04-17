@@ -1,0 +1,28 @@
+indicator("Bitcoin EMA + Bollinger Bands Algorithm Script", overlay = true) //chart line is now over the candle sticks
+
+fast = input.int(10, minval = 1, title = "Fast EMA") 
+slow = input.int(30, minval = 1, title = "Slow EMA")
+
+fastEMA = ta.ema(close, fast) //function "ema" return EMA of closing prices of certain number of days
+slowEMA = ta.ema(close, slow)
+
+buy = ta.crossover(fastEMA, slowEMA)
+sell = ta.crossunder(fastEMA, slowEMA)
+
+
+if sell
+    lbl = label.new(bar_index, low, "Sell")
+    label.set_color(lbl, color.red)
+    label.set_yloc(lbl, yloc.abovebar)
+    label.set_style(lbl, label.style_label_down)
+    
+if buy
+    buy_label = label.new(bar_index, low, "Buy")
+    label.set_color(buy_label, color.green)
+    label.set_yloc(buy_label, yloc.belowbar)
+    label.set_style(buy_label, label.style_label_up)
+
+
+plot(fastEMA, "Fast Ema", color = color.blue, linewidth = 3) //graphing fast ema
+plot(slowEMA, "Slow Ema", color = color.orange, linewidth = 3) //graphing slow ema
+
